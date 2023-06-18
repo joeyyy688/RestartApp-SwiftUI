@@ -10,6 +10,10 @@ import SwiftUI
 struct OnboardingView: View {
     
     @AppStorage("onboarding")  var isOnboardingViewActive: Bool = true
+    
+    @State private var buttonWidth: Double = UIScreen.main.bounds.width - 40
+    @State private var buttonOffset: CGFloat = 0
+    
     var body: some View {
         ZStack {
             Color("ColorBlue").ignoresSafeArea(.all, edges: .all)
@@ -63,7 +67,7 @@ struct OnboardingView: View {
                     HStack {
                         Capsule()
                             .fill(Color("ColorRed"))
-                        .frame(width: 80)
+                        .frame(width: buttonOffset + 80)
                         
                         Spacer()
                     }
@@ -82,15 +86,34 @@ struct OnboardingView: View {
                         }
                         .foregroundColor(.white)
                         .frame(width: 80, height: 80, alignment: .center)
-                        .onTapGesture {
-                            isOnboardingViewActive = false
-                        }
+                        .offset(x: buttonOffset)
+                        .gesture(
+                            DragGesture()
+                                .onChanged{ gesture in
+                                    print(gesture.translation.width)
+                                    if gesture.translation.width > 0 && buttonOffset <= buttonWidth - 80{
+                                        buttonOffset = gesture.translation.width
+                                    }
+                                }
+                                .onEnded{_ in
+                                    if buttonOffset < (buttonWidth - 80) / 2{
+                                        // meaning if the button hasn't crossed half the screen from the left to the right then,
+                                        // reset the button position and bring back to it's default position
+                                        buttonOffset = 0
+                                    }else {
+                                        buttonOffset = buttonWidth - 80
+                                        isOnboardingViewActive = false
+                                    }
+                                    
+                                }
+                        )//: GESTURE
+                        
                         
                         Spacer()
                     }
                     
                 }//: ZSTACK - FOOTER
-                .frame(height: 80, alignment: .center)
+                .frame(width: buttonWidth, height: 80, alignment: .center)
                 .padding(10)
 
             }//: VSTACK - BODY
