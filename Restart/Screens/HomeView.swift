@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @AppStorage("onboarding") var isOnboardingViewActive:Bool = false
+    @State private var isAnimating: Bool = false
     
     var body: some View {
         
@@ -17,7 +18,13 @@ struct HomeView: View {
             Spacer()
             
             ZStack{
-                CircleGroupView(imageName: "character-2", shapeColor: .secondary, shapeOpacity: 0.1)
+                CircleGroupView(shapeColor: .secondary, shapeOpacity: 0.1)
+                Image("character-2")
+                    .resizable()
+                    .scaledToFit()
+                    .padding()
+                    .offset(y: isAnimating ? 20 : -20)
+                    .animation(Animation.easeInOut(duration: 3) .repeatForever(), value: isAnimating)
             }//: ZSTACK - HEADER
             
             
@@ -40,7 +47,9 @@ struct HomeView: View {
             Spacer()
             
             Button(action: {
-                isOnboardingViewActive = true
+                withAnimation(.easeIn(duration: 0.5)){
+                    isOnboardingViewActive = true
+                }
             }) {
                 Image(systemName: "arrow.triangle.2.circlepath.circle.fill")
                     .imageScale(.large)
@@ -55,6 +64,11 @@ struct HomeView: View {
             
             
         }//: VSTACK - BODY
+        .onAppear(perform: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                isAnimating = true
+            })
+        })
     }
 }
 

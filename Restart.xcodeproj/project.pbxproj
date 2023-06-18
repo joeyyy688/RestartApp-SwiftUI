@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04293B332A3FB96B00D51619 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04293B322A3FB96B00D51619 /* AudioPlayer.swift */; };
 		0448A3632A3CD5510044C018 /* RestartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0448A3622A3CD5510044C018 /* RestartApp.swift */; };
 		0448A3652A3CD5510044C018 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0448A3642A3CD5510044C018 /* ContentView.swift */; };
 		0448A3672A3CD5530044C018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0448A3662A3CD5530044C018 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04293B322A3FB96B00D51619 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		0448A35F2A3CD5510044C018 /* Restart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restart.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0448A3622A3CD5510044C018 /* RestartApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartApp.swift; sourceTree = "<group>"; };
 		0448A3642A3CD5510044C018 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		0448A3772A3CF0B50044C018 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				04293B322A3FB96B00D51619 /* AudioPlayer.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				0448A37C2A3CF5190044C018 /* HomeView.swift in Sources */,
 				0448A3652A3CD5510044C018 /* ContentView.swift in Sources */,
 				0448A3632A3CD5510044C018 /* RestartApp.swift in Sources */,
+				04293B332A3FB96B00D51619 /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
