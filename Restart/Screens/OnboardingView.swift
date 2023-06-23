@@ -11,12 +11,14 @@ struct OnboardingView: View {
     
     @AppStorage("onboarding")  var isOnboardingViewActive: Bool = true
     
-    @State private var buttonWidth: Double = UIScreen.main.bounds.width - 80
+    @State private var buttonWidth: Double = UIScreen.main.bounds.width - 40
     @State private var buttonOffset: CGFloat = 0
     @State private var isAnimating: Bool = false
     @State private var imageOffset: CGSize = .zero
     @State private var arrowIconOpacity: Double = 1.0
     @State private var textTitle: String = "Give."
+    
+    let hapticFeedback = UINotificationFeedbackGenerator()
     
     var body: some View {
         ZStack {
@@ -154,9 +156,11 @@ struct OnboardingView: View {
                                         if buttonOffset < (buttonWidth - 80) / 2{
                                             // meaning if the button hasn't crossed half the screen from the left to the right then,
                                             // reset the button position and bring back to it's default position
+                                            hapticFeedback.notificationOccurred(.warning)
                                             buttonOffset = 0
                                         }else {
                                             buttonOffset = buttonWidth - 80
+                                            hapticFeedback.notificationOccurred(.success)
                                             playAudio(filename: "chimeup", fileType: "mp3")
                                             isOnboardingViewActive = false
                                             
