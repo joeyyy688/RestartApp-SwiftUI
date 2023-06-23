@@ -48,7 +48,9 @@ struct HomeView: View {
             
             Button(action: {
                 withAnimation(.easeIn(duration: 0.5)){
+                    playAudio(filename: "success", fileType: "m4a")
                     isOnboardingViewActive = true
+                    
                 }
             }) {
                 Image(systemName: "arrow.triangle.2.circlepath.circle.fill")

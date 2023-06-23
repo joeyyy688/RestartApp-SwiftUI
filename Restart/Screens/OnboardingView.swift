@@ -11,7 +11,7 @@ struct OnboardingView: View {
     
     @AppStorage("onboarding")  var isOnboardingViewActive: Bool = true
     
-    @State private var buttonWidth: Double = UIScreen.main.bounds.width - 40
+    @State private var buttonWidth: Double = UIScreen.main.bounds.width - 80
     @State private var buttonOffset: CGFloat = 0
     @State private var isAnimating: Bool = false
     @State private var imageOffset: CGSize = .zero
@@ -157,7 +157,9 @@ struct OnboardingView: View {
                                             buttonOffset = 0
                                         }else {
                                             buttonOffset = buttonWidth - 80
+                                            playAudio(filename: "chimeup", fileType: "mp3")
                                             isOnboardingViewActive = false
+                                            
                                         }
                                     }
                                     
